@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PokeItem from './pokeItem.js';
 
-class PokeItem extends Component {
+class PokeList extends Component {
     render() {
         return (
             <ul>
@@ -13,4 +13,4 @@ class PokeItem extends Component {
     }
 }
 
-export default PokeItem;
+export default PokeList;
