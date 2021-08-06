@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
 import './Styles/App.css';
 import PokeList from './pokeList';
-import Dropdown from './Dropdown.js';
 
 
 class App extends Component {
   state = { data: [], loading: true, query: null, sortOrder: 'asc' };
-
-  dropdown1 = [ 'pokemon', 'type', 'shape', 'ability' ];
-  dropdown2 = [ 'asc', 'desc' ];
-
-  dropdown1Change = (e) => {
-    this.setState({ type: e.target.value });
+  
+  componentDidMount() {
+    this.fetchData();
   };
-  dropdown2Change = (e) => {
-    this.setState({ direction: e.target.value });
-  };
-
   
   fetchData = async () => {
     if (!this.state.loading) {
@@ -27,9 +19,9 @@ class App extends Component {
     searchParams.set('perPage', 50);
 
     if (this.state.query) {
-      searchParams.set('pokemon', this.set.query);
+      searchParams.set('pokemon', this.state.query);
     }
-    if (this.state.dortOrder) {
+    if (this.state.sortOrder) {
       searchParams.set('sort', 'pokemon');
       searchParams.set('direction', this.state.sortOrder);
     }
@@ -50,9 +42,6 @@ class App extends Component {
     this.setState({ sortOrder: e.target.value});
   };
 
-  componentDidMount() {
-    this.fetchData();
-  };
 
   render() { 
     const { loading, sortOrder } = this.state;
