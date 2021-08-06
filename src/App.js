@@ -56,6 +56,7 @@ class App extends Component {
 
     return ( 
       <>
+      <section id="nav">
         <h1>Who's that Pokemon?</h1>
           <select label="search by" defaultValue={sortType} onChange={this.updateSearch}>
             <option value="pokemon">Search by</option>
@@ -81,10 +82,13 @@ class App extends Component {
           </select>
           <input onChange={this.updateQuery} type="text"></input>
           <button onClick={this.fetchData}>Throw pokeball!</button>        
+      </section>
+      <section id="results">
           {loading && <p>searching the tall grass...</p>}
           {!loading && (
             <PokeList pokedex={this.state.data} />
           )}
+      </section>
       </>
      );
   }
