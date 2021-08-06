@@ -5,8 +5,8 @@ class PokeList extends Component {
     render() {
         return (
             <ul>
-                {this.props.characters.map((char) => {
-                    return <PokeItem key={char.Name} character={char} />;
+                {this.props.pokedex.map((bulb) => {
+                    return <PokeItem key={bulb.pokemon} pokedexEntry={bulb} />;
                 })}
             </ul>
         )

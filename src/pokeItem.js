@@ -6,7 +6,7 @@ class PokeItem extends Component {
     render() { 
         return ( 
             <li>
-                <h3>{this.props.character.Name}</h3>
+                <h3>{this.props.pokedexEntry.pokemon}</h3>
             </li>
          );
     }
