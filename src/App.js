@@ -19,7 +19,7 @@ class App extends Component {
     searchParams.set('perPage', 50);
 
     if (this.state.query) {
-      searchParams.set('pokemon', this.state.query);
+      searchParams.set(this.state.sortSearch, this.state.query);
     }
     if (this.state.sortOrder) {
       searchParams.set('sort', this.state.sortType);
@@ -38,6 +38,10 @@ class App extends Component {
     this.setState({ query: e.target.value });
   };
 
+  updateSearch = (e) => {
+    this.setState({ sortSearch: e.target.value });
+  };
+
   updateType = (e) => {
     this.setState({ sortType: e.target.value });
   };
@@ -53,7 +57,17 @@ class App extends Component {
     return ( 
       <>
         <h1>Who's that Pokemon?</h1>
-          <select defaultValue={sortType} onChange={this.updateType}>
+          <select label="search by" defaultValue={sortType} onChange={this.updateSearch}>
+            <option value="pokemon">Search by</option>
+            <option value="pokemon">Name</option>
+            <option value="type_1">Primary Type</option>
+            <option value="shape">Shape</option>
+            <option value="ability_1">Most Common Ability</option>
+            <option value="height">Height</option>
+            <option value="egg_group_1">Egg Group</option>
+          </select>
+          <select label="sort by" defaultValue={sortType} onChange={this.updateType}>
+            <option value="pokemon">Sort by</option>
             <option value="pokemon">Name</option>
             <option value="type_1">Primary Type</option>
             <option value="shape">Shape</option>
