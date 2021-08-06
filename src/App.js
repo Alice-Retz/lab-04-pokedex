@@ -5,7 +5,7 @@ import Dropdown from './Dropdown.js';
 
 
 class App extends Component {
-  state = { data: [], loading: true, query: null };
+  state = { data: [], loading: true, query: null, sortOrder: 'asc' };
 
   dropdown1 = [ 'pokemon', 'type', 'shape', 'ability' ];
   dropdown2 = [ 'asc', 'desc' ];
@@ -19,24 +19,35 @@ class App extends Component {
 
   
   fetchData = async () => {
+    if (!this.state.loading) {
+      this.setState({ loading: true });
+  }
     let url = 'https://pokedex-alchemy.herokuapp.com/api/pokedex';
-    let dropdown1 = await this.dropdown1Change.value;
-    let dropdown2 = await this.dropdown2Change.value;
+    let searchParams = new URLSearchParams();
+    searchParams.set('perPage', 50);
 
     if (this.state.query) {
-      url = url + `?pokemon=${this.state.query}&sort=${dropdown1}direction=${dropdown2}`;
+      searchParams.set('pokemon', this.set.query);
     }
+    if (this.state.dortOrder) {
+      searchParams.set('sort', 'pokemon');
+      searchParams.set('direction', this.state.sortOrder);
+    }
+
+    url = url + `?${searchParams.toString()}`;
     
     let response = await fetch(url);
     let data = await response.json();
-    console.log(data);
 
     this.setState({ data: data.results, loading: false });
   };
 
   updateQuery = (e) => {
     this.setState({ query: e.target.value });
-    console.log(e.target.value);
+  };
+
+  updateSort = (e) => {
+    this.setState({ sortOrder: e.target.value});
   };
 
   componentDidMount() {
@@ -44,31 +55,20 @@ class App extends Component {
   };
 
   render() { 
-    const { loading } = this.state;
-
+    const { loading, sortOrder } = this.state;
 
     return ( 
       <>
         <h1>Who's that Pokemon?</h1>
-        {loading && <p>searching the tall grass...</p>}
-         {!loading && (
-          <section>
-            <Dropdown
-              label="sort by"
-              id="dropdown1"
-              options={this.dropdown1}
-              changeEvent={this.dropdown1Change}
-              />
-            <Dropdown
-              label="sort order"
-              id="dropdown2"
-              options={this.dropdown2}
-              changeEvent={this.dropdown2Change}
-            />
-            <input onChange={this.updateQuery} type="text"></input>
-            <button onClick={this.fetchData}>Throw pokeball!</button>        
+          <select defaultValue={sortOrder} onChange={this.updateSort}>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+          <input onChange={this.updateQuery} type="text"></input>
+          <button onClick={this.fetchData}>Throw pokeball!</button>        
+          {loading && <p>searching the tall grass...</p>}
+          {!loading && (
             <PokeList pokedex={this.state.data} />
-          </section>
           )}
       </>
      );
