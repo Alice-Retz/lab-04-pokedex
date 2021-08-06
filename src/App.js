@@ -4,7 +4,7 @@ import PokeList from './pokeList';
 
 
 class App extends Component {
-  state = { data: [], loading: true, query: null, sortOrder: 'asc' };
+  state = { data: [], loading: true, query: null, sortOrder: 'asc', sortType: 'pokemon' };
   
   componentDidMount() {
     this.fetchData();
@@ -22,7 +22,7 @@ class App extends Component {
       searchParams.set('pokemon', this.state.query);
     }
     if (this.state.sortOrder) {
-      searchParams.set('sort', 'pokemon');
+      searchParams.set('sort', this.state.sortType);
       searchParams.set('direction', this.state.sortOrder);
     }
 
@@ -38,17 +38,29 @@ class App extends Component {
     this.setState({ query: e.target.value });
   };
 
+  updateType = (e) => {
+    this.setState({ sortType: e.target.value });
+  };
+
   updateSort = (e) => {
     this.setState({ sortOrder: e.target.value});
   };
 
 
   render() { 
-    const { loading, sortOrder } = this.state;
+    const { loading, sortOrder, sortType } = this.state;
 
     return ( 
       <>
         <h1>Who's that Pokemon?</h1>
+          <select defaultValue={sortType} onChange={this.updateType}>
+            <option value="pokemon">Name</option>
+            <option value="type_1">Primary Type</option>
+            <option value="shape">Shape</option>
+            <option value="ability_1">Most Common Ability</option>
+            <option value="height">Height</option>
+            <option value="egg_group_1">Egg Group</option>
+          </select>
           <select defaultValue={sortOrder} onChange={this.updateSort}>
             <option value="asc">Ascending</option>
             <option value="desc">Descending</option>
