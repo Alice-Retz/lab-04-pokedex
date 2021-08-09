@@ -6,13 +6,13 @@ import './Styles/pokeItem.css';
 
 class PokeItem extends Component {
     render() {
-        const { mon } = this.props;
+        const { pokedexEntry } = this.props;
         return ( 
             <div className="dex-entry">
-                <Link to={`/pokemon/${this.props.mon._id}`}>
-                    <h3>{mon.pokemon}</h3>
+                <Link to={`/pokemon/${this.props.pokedexEntry._id}`}>
+                    <h3>{pokedexEntry.pokemon}</h3>
                     <div className="pokemon">
-                        <img src={mon.url_image} alt="An official illustration of the pokemon {mon.pokemon}."></img>
+                        <img src={pokedexEntry.url_image} alt="An official illustration of the pokemon {mon.pokemon}."></img>
                     </div>
                 </Link>
             </div>

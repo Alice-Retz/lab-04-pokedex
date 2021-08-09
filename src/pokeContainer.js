@@ -4,7 +4,7 @@ import PokeList from './pokeList.js';
 
 
 class pokeContainer extends Component {
-    state = { data: [], loading: true, query: null, sortOrder: 'asc', sortType: 'pokemon' };
+    state = { data: [], loading: true, query: null, sortOrder: 'asc', sortType: 'pokemon', page: 1, lastPage: 1, };
     
 componentDidMount() {
     this.fetchData();
@@ -16,7 +16,7 @@ componentDidMount() {
   }
     let url = 'https://pokedex-alchemy.herokuapp.com/api/pokedex';
     let searchParams = new URLSearchParams();
-    searchParams.set('perPage', 50);
+    searchParams.set('page', this.state.page);
 
     if (this.state.query) {
       searchParams.set(this.state.sortSearch, this.state.query);
@@ -30,8 +30,9 @@ componentDidMount() {
     
     let response = await fetch(url);
     let data = await response.json();
+    const lastPage = Math.ceil(data.count / data.perPage);
 
-    this.setState({ data: data.results, loading: false });
+    this.setState({ data: data.results, loading: false, lastPage });
   };
 
   updateQuery = (e) => {
@@ -50,6 +51,25 @@ componentDidMount() {
     this.setState({ sortOrder: e.target.value});
   };
 
+  nextPage = async () => {
+    await this.setState({ page: this.state.page + 1 });
+    this.fetchData();
+  }
+
+  prevPage = async () => {
+    await this.setState({ page: this.state.page - 1 });
+    this.fetchData();
+  }
+  
+  goToLast = async () => {
+    await this.setState({ page: this.state.lastPage });
+    this.fetchData();
+  }
+
+  searchPokemon = async () => {
+    await this.setState({ page: 1 });
+    this.fetchData();
+  }
 
   render() { 
     const { loading, sortOrder, sortType } = this.state;

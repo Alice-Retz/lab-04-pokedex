@@ -8,9 +8,7 @@ class Header extends Component {
             <header>
                 <div>Pokedex</div>
                 <div className="links">
-                    <NavLink exact to="/">
-                        Home
-                    </NavLink>
+                    <NavLink exact to="/">Home</NavLink>
                     <NavLink to="/pokemon">Pokemon List</NavLink>
                 </div>
             </header>

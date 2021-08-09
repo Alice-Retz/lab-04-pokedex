@@ -1,0 +1,22 @@
+.poke-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+.poke-card {
+    border: 1px solid black;
+    padding: 20px;
+    margin: 10px;
+}
+.poke-list a {
+    text-decoration: none;
+    color: black;
+}
+
+.pokemon {
+    height: 100px;
+    width: 100px;
+}
+
+.pokemon img {
+    width: 100%;
+}
