@@ -14,7 +14,7 @@ body {
 
 li {
   background-color: rgb(250, 233, 181);
-  width: fit-content;
+  width: 500px;
   padding: 10px;
   margin: 20px 0 20px 0;
   border: solid rgb(143, 189, 98) 5px;
