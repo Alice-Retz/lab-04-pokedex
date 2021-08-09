@@ -13,7 +13,7 @@ body {
 }
 
 li {
-  background-color: rgb(250, 233, 181);
+  background-color: rgba(250, 233, 181, 0.8);
   width: 500px;
   padding: 10px;
   margin: 20px 0 20px 0;
