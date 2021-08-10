@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PokeItem from './pokeItem.js';
+import './Styles/pokeItem.css';
 
 class PokeList extends Component {
     render() {
         return (
-            <ul>
+            <div className="poke-list">
                 {this.props.pokedex.map((bulb) => {
                     return <PokeItem key={bulb.pokemon} pokedexEntry={bulb} />;
                 })}
-            </ul>
+            </div>
         )
     }
 }

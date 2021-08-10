@@ -1,0 +1,38 @@
+
+header {
+    min-width: 100vw;
+    height: 100px;
+    background-color: rgb(146, 75, 47);
+    color: rgb(250, 233, 181);
+    font-size: 2rem;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+header div {
+    margin-left: 15px;
+    margin-right: 20px;
+}
+
+
+.links {
+    text-transform: none;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.links a {
+    color: #e5d4ed;
+    text-decoration: none;
+}
+
+.links a.active,
+.links a:hover {
+    color: #f8f4a6;
+}

@@ -1,7 +1,5 @@
-
-
+ 
 body {
-  margin: 20px;
   background-image: url("./80.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -12,32 +10,3 @@ body {
 
 }
 
-li {
-  background-color: rgba(250, 233, 181, 0.8);
-  width: 500px;
-  padding: 10px;
-  margin: 20px 0 20px 0;
-  border: solid rgb(143, 189, 98) 5px;
-  border-radius: 20px;
-}
-
-#nav {
-  background-color: rgb(143, 189, 98);
-  width: fit-content;
-  padding: 10px;
-  border: solid rgb(146, 75, 47) 7px;
-  border-radius: 20px;
-  font-size: 20px;
-  color: rgb(250, 233, 181);
-}
-
-h3 {
-  background-color: rgb(143, 189, 98);
-  width: fit-content;
-  padding: 10px;
-  border: solid rgb(146, 75, 47) 7px;
-  border-radius: 20px;
-  font-size: 50px;
-  margin: -30px 0 0 -30px;
-  color: rgb(250, 233, 181);
-}

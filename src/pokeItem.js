@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './Styles/pokeItem.css';
 
 
 
 class PokeItem extends Component {
     render() {
+        const { pokedexEntry } = this.props;
         return ( 
-            <li>
-                <h3>{this.props.pokedexEntry.pokemon}</h3>
-                <p><img height="200px" alt={this.props.pokedexEntry.pokedex} src={this.props.pokedexEntry.url_image} /></p>
-                <ul>Type: {this.props.pokedexEntry.type_1}, {this.props.pokedexEntry.type_2}</ul>
-                <ul>Shape: {this.props.pokedexEntry.shape}</ul>
-                <ul>Abilities: {this.props.pokedexEntry.ability_1}, {this.props.pokedexEntry.ability_2}, {this.props.pokedexEntry.ability_hidden} (hidden ability)</ul>
-                <ul>Height: {this.props.pokedexEntry.height}</ul>
-                <ul>Egg Group: {this.props.pokedexEntry.egg_group_1}, {this.props.pokedexEntry.egg_group_2}</ul>
-            </li>
+            <div className="dex-entry">
+                <Link to={`/pokemon/${this.props.pokedexEntry._id}`}>
+                    <h3>{pokedexEntry.pokemon}</h3>
+                    <div className="pokemon">
+                        <img src={pokedexEntry.url_image} alt="An official illustration of the pokemon {mon.pokemon}."></img>
+                        
+                    </div>
+                </Link>
+            </div>
          );
     }
 }
