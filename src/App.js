@@ -4,6 +4,7 @@ import Header from './Header.js';
 import Home from './Home.js';
 import dexEntry from './DexEntry.js';
 import pokeContainer from './pokeContainer.js';
+// import './Styles/reset.css';
 import './Styles/App.css';
 
 

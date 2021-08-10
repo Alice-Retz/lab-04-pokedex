@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PokeList from './pokeList.js';
+import './Styles/pokeContainer.css';
 
 
 
@@ -75,54 +76,53 @@ componentDidMount() {
     const { loading, sortOrder, sortType } = this.state;
 
     return ( 
-      <>
-      <section id="nav">
-        <h1>Who's that Pokemon?</h1>
-          <select label="search by" defaultValue={sortType} onChange={this.updateSearch}>
-            <option value="pokemon">Search by</option>
-            <option value="pokemon">Name</option>
-            <option value="type_1">Primary Type</option>
-            <option value="shape">Shape</option>
-            <option value="ability_1">Most Common Ability</option>
-            <option value="height">Height</option>
-            <option value="egg_group_1">Egg Group</option>
-          </select>
-          <select label="sort by" defaultValue={sortType} onChange={this.updateType}>
-            <option value="pokemon">Sort by</option>
-            <option value="pokemon">Name</option>
-            <option value="type_1">Primary Type</option>
-            <option value="shape">Shape</option>
-            <option value="ability_1">Most Common Ability</option>
-            <option value="height">Height</option>
-            <option value="egg_group_1">Egg Group</option>
-          </select>
-          <select defaultValue={sortOrder} onChange={this.updateSort}>
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-          </select>
-          <input onChange={this.updateQuery} type="text"></input>
-          <button onClick={this.fetchData}>Throw pokeball!</button>        
-      </section>
-      <div className="page-controls">
-            {this.state.page > 1 && (
-                <button onClick={this.prevPage}>Prev</button>
-            )}
-            {this.state.page < this.state.lastPage && (
-                <>
-                    <button onClick={this.nextPage}>Next</button>
-                    <button onClick={this.goToLast}>Last Page</button>
-                </>
-            )}
-        </div>
-        CURRENT PAGE: {this.state.page}
-        LAST PAGE: {this.state.lastPage}
-        {loading && <p>searching the tall grass...</p>}
-        {!loading && (
-        <section>
-            <PokeList pokedex={this.state.data} />
+      <div id="view-pokedex">
+        <section id="nav">
+          <h1>Who's that Pokemon?</h1>
+            <select label="search by" defaultValue={sortType} onChange={this.updateSearch}>
+              <option value="pokemon">Search by</option>
+              <option value="pokemon">Name</option>
+              <option value="type_1">Primary Type</option>
+              <option value="shape">Shape</option>
+              <option value="ability_1">Most Common Ability</option>
+              <option value="height">Height</option>
+              <option value="egg_group_1">Egg Group</option>
+            </select>
+            <select label="sort by" defaultValue={sortType} onChange={this.updateType}>
+              <option value="pokemon">Sort by</option>
+              <option value="pokemon">Name</option>
+              <option value="type_1">Primary Type</option>
+              <option value="shape">Shape</option>
+              <option value="ability_1">Most Common Ability</option>
+              <option value="height">Height</option>
+              <option value="egg_group_1">Egg Group</option>
+            </select>
+            <select defaultValue={sortOrder} onChange={this.updateSort}>
+              <option value="asc">Ascending</option>
+              <option value="desc">Descending</option>
+            </select>
+            <input onChange={this.updateQuery} type="text"></input>
+            <button onClick={this.fetchData}>Throw pokeball!</button>        
         </section>
+        <div className="page-controls">
+              {this.state.page > 1 && (
+                  <button onClick={this.prevPage}>Prev</button>
+              )}
+              {this.state.page < this.state.lastPage && (
+                  <>
+                      <button onClick={this.nextPage}>Next</button>
+                      <button onClick={this.goToLast}>Last Page</button>
+                  </>
+              )}
+          </div>
+          <h4>CURRENT PAGE: {this.state.page} | LAST PAGE: {this.state.lastPage}</h4>
+          {loading && <p>searching the tall grass...</p>}
+          {!loading && (
+          <section className="pokemon-list">
+              <PokeList pokedex={this.state.data} />
+          </section>
         )}
-      </>
+      </div>
      );
   }
 }

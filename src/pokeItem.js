@@ -13,6 +13,7 @@ class PokeItem extends Component {
                     <h3>{pokedexEntry.pokemon}</h3>
                     <div className="pokemon">
                         <img src={pokedexEntry.url_image} alt="An official illustration of the pokemon {mon.pokemon}."></img>
+                        
                     </div>
                 </Link>
             </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PokeItem from './pokeItem.js';
+import './Styles/pokeItem.css';
 
 class PokeList extends Component {
     render() {
