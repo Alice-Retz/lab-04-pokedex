@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PokeList from './pokeList.js';
 import './Styles/pokeContainer.css';
+import Loader from 'react-loader-spinner';
 
 
 
@@ -33,7 +34,9 @@ componentDidMount() {
     let data = await response.json();
     const lastPage = Math.ceil(data.count / data.perPage);
 
-    this.setState({ data: data.results, loading: false, lastPage });
+  setTimeout(() => {
+      this.setState({ data: data.results, loading: false, lastPage  });
+    }, 1000);
   };
 
   updateQuery = (e) => {
@@ -116,7 +119,7 @@ componentDidMount() {
               )}
           </div>
           <h4>CURRENT PAGE: {this.state.page} | LAST PAGE: {this.state.lastPage}</h4>
-          {loading && <p>searching the tall grass...</p>}
+          {loading && ( 	<Loader type="BallTriangle" color="#00BFFF" height={80} width={80} />)}
           {!loading && (
           <section className="pokemon-list">
               <PokeList pokedex={this.state.data} />

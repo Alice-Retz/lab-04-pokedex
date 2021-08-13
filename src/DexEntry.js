@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import './Styles/DexEntry.css';
+import Loader from 'react-loader-spinner';
 
 class dexEntry extends Component {
-    state = { data: {} };
+    state = { data: {}, loading: true };
 
+    
     loadData = async () => {
         const { id } = this.props.match.params;
         const url = `https://pokedex-alchemy.herokuapp.com/api/pokedex/${id}`;
         const resp = await fetch(url);
         const data = await resp.json();
-        this.setState({ data });
+        setTimeout(() => {
+            this.setState({ data, loading: false });
+          }, 1000);
     };
 
     componentDidMount() {
@@ -17,8 +21,11 @@ class dexEntry extends Component {
     }
 
     render() {
-        const { data } = this.state;
+        const { loading, data } = this.state;
         return (
+        <>
+        {loading && ( 	<Loader type="Puff" color="pink" height={80} width={80} />)}
+        {!loading && (
             <div id="pokedex-page">
                 <h2>{data.pokemon}</h2>
                 <div className="pokedex-entry">
@@ -32,6 +39,8 @@ class dexEntry extends Component {
                     </ul>
                 </div>
             </div>
+        )};
+        </>
         );
     }
 }
